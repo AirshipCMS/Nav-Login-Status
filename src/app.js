@@ -13,18 +13,20 @@ class NavLoginStatus {
     this.element.appendChild(this.signInButtonEl)
     this.signInButtonEl.innerHTML = 'Sign In';
     this.signInButtonEl.href = '/login';
+    this.signInButtonEl.className = 'nav-login-status-signin'
 
     this.dropDownEl = document.createElement('ul');    
     this.userEmailEl = document.createElement('li');
-    let logout = document.createElement('li');
+    let logoutEl = document.createElement('li');
 
     this.element.appendChild(this.dropDownEl);
     this.dropDownEl.appendChild(this.userEmailEl);
-    this.dropDownEl.appendChild(logout);
-    this.dropDownEl.className = 'hidden';
+    this.dropDownEl.appendChild(logoutEl);
+    this.dropDownEl.className = 'nav-login-status-dropdown hidden';
 
-    logout.innerHTML = 'Logout';
-    logout.addEventListener('click', () => this.logout());
+    logoutEl.innerHTML = 'Logout';
+    logoutEl.className = 'nav-login-status-logout';
+    logoutEl.addEventListener('click', () => this.logout());
 
     if(this.id_token !== null) {
       this.getProfile((err, xhr) => {

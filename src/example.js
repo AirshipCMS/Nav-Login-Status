@@ -1,0 +1,1 @@
+new NavLoginStatus('domain.airshipcms-alpha.io');
