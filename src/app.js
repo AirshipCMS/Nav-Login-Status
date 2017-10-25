@@ -1,57 +1,73 @@
 class NavLoginStatus {
 
-  constructor(domain, el = 'nav-login-status') {
+  constructor(domain) {
     this.id_token = localStorage.getItem('id_token');
-    this.element = document.getElementById(el);
+    this.element = document.getElementById('nav-login-status');
     this.domain = domain;
-    this.isAuthenticated = false;
 
     this.checkContainer();
   }
 
   render() {
-    this.signInButton = document.createElement('a')
-    this.element.appendChild(this.signInButton)
-    this.signInButton.innerHTML = 'Sign In';
+    this.signInButtonEl = document.createElement('a')
+    this.element.appendChild(this.signInButtonEl)
+    this.signInButtonEl.innerHTML = 'Sign In';
+    this.signInButtonEl.href = '/login';
 
-    this.dropDown = document.createElement('ul');    
-    this.user = document.createElement('li');
-    this.logout = document.createElement('li');
+    this.dropDownEl = document.createElement('ul');    
+    this.userEmailEl = document.createElement('li');
+    let logout = document.createElement('li');
 
-    this.element.appendChild(this.dropDown);
-    this.dropDown.appendChild(this.user);
-    this.dropDown.appendChild(this.logout);
-    this.dropDown.className = 'hidden';
-    this.logout.innerHTML = 'Logout';
+    this.element.appendChild(this.dropDownEl);
+    this.dropDownEl.appendChild(this.userEmailEl);
+    this.dropDownEl.appendChild(logout);
+    this.dropDownEl.className = 'hidden';
+
+    logout.innerHTML = 'Logout';
+    logout.addEventListener('click', () => this.logout());
 
     if(this.id_token !== null) {
       this.getProfile((err, xhr) => {
         if(xhr.status === 200){
-          this.user.innerHTML = JSON.parse(xhr.response).email;
-          this.showDropdown();
+          this.userEmailEl.innerHTML = JSON.parse(xhr.response).email;
+          this.toggleElements();
         }
       });
     }
   }
 
-  showDropdown() {
-    this.signInButton.className = 'hidden';
-    this.dropDown.className = '';
+  toggleElements() {
+    this.signInButtonEl.classList.toggle('hidden');
+    this.dropDownEl.classList.toggle('hidden');
   }
 
   getProfile(done){
-    let authenticated = false;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `https://${this.domain}/api/users/profile`);
-    xhr.setRequestHeader('Authorization', `bearer  ${this.id_token}`);
-    xhr.onload = () => done(null, xhr)
-    xhr.onerror = () => done(xhr.xhr)
+    xhr.setRequestHeader('Authorization', `bearer ${this.id_token}`);
+    xhr.onload = () => done(null, xhr);
+    xhr.onerror = () => done(xhr.xhr);
     xhr.send();
   }
 
+  logout(){
+    localStorage.clear();
+    this.toggleElements();
+  }
+
+  isValidDomain(domain) {
+    let valid = false;
+    let substring = '.airshipcms.io';
+    let substring2 = '.airshipcms-alpha.io';
+    if(domain.includes(substring) || domain.includes(substring2)){
+      valid = true;
+    }
+    return valid;
+  }
+
   checkContainer() {
-    if(this.domain === undefined){
-      throw new Error('domain required');
+    if(this.domain === undefined || !this.isValidDomain(this.domain)){
+      throw new Error('valid airship domain required');
     }
     if(this.element === null){
       throw new Error('Nav Login Status container not found');

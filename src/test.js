@@ -1,1 +1,1 @@
-let test = new NavLoginStatus();
+let test = new NavLoginStatus('endtoend.airshipcms-alpha.io');
