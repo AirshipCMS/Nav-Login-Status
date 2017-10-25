@@ -1,8 +1,10 @@
 class NavLoginStatus {
 
-  constructor(el = 'nav-login-status') {
-    this.id_token = JSON.parse(localStorage.getItem('id_token'));
+  constructor(domain, el = 'nav-login-status') {
+    this.id_token = localStorage.getItem('id_token');
     this.element = document.getElementById(el);
+    this.domain = domain;
+    this.isAuthenticated = false;
 
     this.checkContainer();
   }
@@ -12,37 +14,47 @@ class NavLoginStatus {
     this.element.appendChild(this.signInButton)
     this.signInButton.innerHTML = 'Sign In';
 
-    let dropDown = document.createElement('ul');    
-    let user = document.createElement('li');
-    let logout = document.createElement('li');
+    this.dropDown = document.createElement('ul');    
+    this.user = document.createElement('li');
+    this.logout = document.createElement('li');
 
-    this.element.appendChild(dropDown);
-    dropDown.appendChild(user);
-    dropDown.appendChild(logout);
-    dropDown.className = 'hidden';
-    user.innerHTML = 'user@email.com';
-    logout.innerHTML = 'Logout';
-  }
+    this.element.appendChild(this.dropDown);
+    this.dropDown.appendChild(this.user);
+    this.dropDown.appendChild(this.logout);
+    this.dropDown.className = 'hidden';
+    this.logout.innerHTML = 'Logout';
 
-  checkStatus() {
     if(this.id_token !== null) {
-
-    } else {
-      this.showSignIn();
+      this.getProfile((err, xhr) => {
+        if(xhr.status === 200){
+          this.user.innerHTML = JSON.parse(xhr.response).email;
+          this.showDropdown();
+        }
+      });
     }
   }
 
-  showSignIn() {
-    this.signInButton.className = '';
+  showDropdown() {
+    this.signInButton.className = 'hidden';
+    this.dropDown.className = '';
   }
 
-  showDropdown() {
-
+  getProfile(done){
+    let authenticated = false;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://${this.domain}/api/users/profile`);
+    xhr.setRequestHeader('Authorization', `bearer  ${this.id_token}`);
+    xhr.onload = () => done(null, xhr)
+    xhr.onerror = () => done(xhr.xhr)
+    xhr.send();
   }
 
   checkContainer() {
+    if(this.domain === undefined){
+      throw new Error('domain required');
+    }
     if(this.element === null){
-      throw new Error('Nav Login Stats container not found')
+      throw new Error('Nav Login Status container not found');
     } else {
       this.render();
     }
