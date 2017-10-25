@@ -19,7 +19,7 @@ add the element container:
 <div id="nav-login-status"></div>
 ```
 
-note that the element's `id` but be `nav-login-status`.
+note that the element's `id` should be `nav-login-status`.
 
 create an instance of NavLoginStatus with the airshipcms domain:
 
