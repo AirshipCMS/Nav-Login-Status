@@ -6,10 +6,10 @@ include `navLoginStatus.js` and `navLoginStatus.css` in your airship project:
 
 ```
 <head>
-	<link rel="stylesheet" type="text/css" href="/compartments/assets/styles/navLoginStatus.css">
+	<link rel="stylesheet" type="text/css" href="/assets/styles/navLoginStatus.css">
 </head>
 <body>
-	<script src="/compartments/assets/scripts/navLoginStatus.js"></script>
+	<script src="/assets/scripts/navLoginStatus.js"></script>
 </body>
 ```
 
