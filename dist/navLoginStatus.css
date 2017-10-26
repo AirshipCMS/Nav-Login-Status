@@ -53,9 +53,9 @@ table {
 
 #nav-login-status{
   color: #ABABAB;
-  position: fixed;
-  top: 15px;
-  right: 15px;
+  background-color: #fff;
+  display: flex;
+  position: relative;
 }
 
 #nav-login-status a{
@@ -68,6 +68,10 @@ table {
   padding: 0.5em;
   color: #ABABAB;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
 }
 
 .nav-login-status-dropdown{

@@ -11,7 +11,7 @@ class NavLoginStatus {
     this.signInButtonEl = document.createElement("a");
     this.element.appendChild(this.signInButtonEl);
     this.signInButtonEl.innerHTML = "Sign In";
-    this.signInButtonEl.href = "/login";
+    this.signInButtonEl.href = "/signin";
     this.signInButtonEl.className = "nav-login-status-signin";
 
     this.dropDownEl = document.createElement("ul");
