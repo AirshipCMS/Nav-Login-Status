@@ -2,14 +2,11 @@
 
 ## Usage
 
-include `navLoginStatus.js` and `navLoginStatus.css` in your airship project:
+include `navLoginStatus.bundle.js` in your airship project:
 
 ```
-<head>
-	<link rel="stylesheet" type="text/css" href="/assets/styles/navLoginStatus.css">
-</head>
 <body>
-	<script src="/assets/scripts/navLoginStatus.js"></script>
+	<script src="/assets/scripts/navLoginStatus.bundle.js"></script>
 </body>
 ```
 
@@ -38,15 +35,15 @@ yarn install
 start dev server
 
 ```
-gulp
+yarn run dev
 ```
 
-this serves `src/` on `localhost:8080`
+this serves `src/` on `localhost:9000`
 
 ## Build
 
 ```
-gulp build
+yarn build
 ```
 
 necessary files will build into `dist/`
