@@ -14,14 +14,19 @@ class NavLoginStatus {
     this.signInButtonEl.href = "/signin";
     this.signInButtonEl.className = "nav-login-status-signin";
 
+    this.dropDownContainer = document.createElement("div");
+    this.userEmailEl = document.createElement("span");
     this.dropDownEl = document.createElement("ul");
-    this.userEmailEl = document.createElement("li");
     let logoutEl = document.createElement("li");
 
-    this.element.appendChild(this.dropDownEl);
-    this.dropDownEl.appendChild(this.userEmailEl);
+    this.element.appendChild(this.dropDownContainer);
+    this.dropDownContainer.appendChild(this.userEmailEl);
+    this.dropDownContainer.appendChild(this.dropDownEl);
     this.dropDownEl.appendChild(logoutEl);
-    this.dropDownEl.className = "nav-login-status-dropdown login-status-hidden";
+
+    this.dropDownEl.className = "nav-login-status-dropdown";
+    this.dropDownContainer.className = "nav-login-status-logged-in login-status-hidden";
+    this.userEmailEl.className = "nav-login-status-username";
 
     logoutEl.innerHTML = "Logout";
     logoutEl.className = "nav-login-status-logout";
@@ -39,7 +44,7 @@ class NavLoginStatus {
 
   toggleElements() {
     this.signInButtonEl.classList.toggle("login-status-hidden");
-    this.dropDownEl.classList.toggle("login-status-hidden");
+    this.dropDownContainer.classList.toggle("login-status-hidden");
   }
 
   getProfile(done) {
