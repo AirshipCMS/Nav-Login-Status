@@ -21,7 +21,7 @@ class NavLoginStatus {
     this.element.appendChild(this.dropDownEl);
     this.dropDownEl.appendChild(this.userEmailEl);
     this.dropDownEl.appendChild(logoutEl);
-    this.dropDownEl.className = "nav-login-status-dropdown hidden";
+    this.dropDownEl.className = "nav-login-status-dropdown login-status-hidden";
 
     logoutEl.innerHTML = "Logout";
     logoutEl.className = "nav-login-status-logout";
@@ -38,8 +38,8 @@ class NavLoginStatus {
   }
 
   toggleElements() {
-    this.signInButtonEl.classList.toggle("hidden");
-    this.dropDownEl.classList.toggle("hidden");
+    this.signInButtonEl.classList.toggle("login-status-hidden");
+    this.dropDownEl.classList.toggle("login-status-hidden");
   }
 
   getProfile(done) {
