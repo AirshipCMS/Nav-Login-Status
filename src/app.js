@@ -44,6 +44,7 @@ class NavLoginStatus {
 
   toggleElements() {
     this.signInButtonEl.classList.toggle("login-status-hidden");
+    this.signInButtonEl.classList.toggle("nav-login-status-signin");
     this.dropDownContainer.classList.toggle("login-status-hidden");
   }
 
