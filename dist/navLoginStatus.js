@@ -87,7 +87,7 @@ var NavLoginStatus = function () {
   }, {
     key: "logout",
     value: function logout() {
-      localStorage.clear();
+      delete localStorage.id_token;
       this.toggleStatus();
     }
   }, {

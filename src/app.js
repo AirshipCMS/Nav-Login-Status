@@ -63,7 +63,7 @@ class NavLoginStatus {
   }
 
   logout() {
-    localStorage.clear();
+    delete localStorage.id_token;
     this.toggleStatus();
   }
 
