@@ -9,6 +9,7 @@
   border: 1px solid #BBBCBB;
   cursor: pointer;
   text-align: right;
+  position: relative;
 }
 
 .nav-login-status-username,
@@ -27,12 +28,11 @@
 .nav-login-status-dropdown{
   margin: 0;
   padding: 0;
-  display: none;
   list-style: none;
-  border-top: 1px solid #BBBCBB;
+  border: 1px solid #BBBCBB;
   text-align: right;
-}
-
-.nav-login-status-logged-in:hover .nav-login-status-dropdown{
-  display: block;
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  width: 100%;
 }

@@ -28,7 +28,6 @@
 .nav-login-status-dropdown{
   margin: 0;
   padding: 0;
-  display: none;
   list-style: none;
   border: 1px solid #BBBCBB;
   text-align: right;
@@ -36,8 +35,4 @@
   right: 0;
   background-color: #fff;
   width: 100%;
-}
-
-.nav-login-status-logged-in:hover .nav-login-status-dropdown{
-  display: block;
 }

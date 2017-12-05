@@ -24,9 +24,10 @@ class NavLoginStatus {
     this.dropDownContainer.appendChild(this.dropDownEl);
     this.dropDownEl.appendChild(logoutEl);
 
-    this.dropDownEl.className = "nav-login-status-dropdown";
+    this.dropDownEl.className = "nav-login-status-dropdown login-status-hidden";
     this.dropDownContainer.className = "nav-login-status-logged-in login-status-hidden";
     this.userEmailEl.className = "nav-login-status-username";
+    this.userEmailEl.addEventListener("click", () => this.toggleDropdown());
 
     logoutEl.innerHTML = "Logout";
     logoutEl.className = "nav-login-status-logout";
@@ -36,13 +37,17 @@ class NavLoginStatus {
       this.getProfile((err, xhr) => {
         if (xhr.status === 200) {
           this.userEmailEl.innerHTML = JSON.parse(xhr.response).email;
-          this.toggleElements();
+          this.toggleStatus();
         }
       });
     }
   }
 
-  toggleElements() {
+  toggleDropdown() {
+    this.dropDownEl.classList.toggle("login-status-hidden");
+  }
+
+  toggleStatus() {
     this.signInButtonEl.classList.toggle("login-status-hidden");
     this.signInButtonEl.classList.toggle("nav-login-status-signin");
     this.dropDownContainer.classList.toggle("login-status-hidden");
@@ -59,7 +64,7 @@ class NavLoginStatus {
 
   logout() {
     localStorage.clear();
-    this.toggleElements();
+    this.toggleStatus();
   }
 
   isValidDomain(domain) {
