@@ -26,14 +26,22 @@ var NavLoginStatus = function () {
       this.signInButtonEl.href = "/signin";
       this.signInButtonEl.className = "nav-login-status-signin";
 
+      this.dropDownContainer = document.createElement("div");
+      this.userEmailEl = document.createElement("span");
       this.dropDownEl = document.createElement("ul");
-      this.userEmailEl = document.createElement("li");
       var logoutEl = document.createElement("li");
 
-      this.element.appendChild(this.dropDownEl);
-      this.dropDownEl.appendChild(this.userEmailEl);
+      this.element.appendChild(this.dropDownContainer);
+      this.dropDownContainer.appendChild(this.userEmailEl);
+      this.dropDownContainer.appendChild(this.dropDownEl);
       this.dropDownEl.appendChild(logoutEl);
-      this.dropDownEl.className = "nav-login-status-dropdown hidden";
+
+      this.dropDownEl.className = "nav-login-status-dropdown login-status-hidden";
+      this.dropDownContainer.className = "nav-login-status-logged-in login-status-hidden";
+      this.userEmailEl.className = "nav-login-status-username";
+      this.userEmailEl.addEventListener("click", function () {
+        return _this.toggleDropdown();
+      });
 
       logoutEl.innerHTML = "Logout";
       logoutEl.className = "nav-login-status-logout";
@@ -45,16 +53,22 @@ var NavLoginStatus = function () {
         this.getProfile(function (err, xhr) {
           if (xhr.status === 200) {
             _this.userEmailEl.innerHTML = JSON.parse(xhr.response).email;
-            _this.toggleElements();
+            _this.toggleStatus();
           }
         });
       }
     }
   }, {
-    key: "toggleElements",
-    value: function toggleElements() {
-      this.signInButtonEl.classList.toggle("hidden");
-      this.dropDownEl.classList.toggle("hidden");
+    key: "toggleDropdown",
+    value: function toggleDropdown() {
+      this.dropDownEl.classList.toggle("login-status-hidden");
+    }
+  }, {
+    key: "toggleStatus",
+    value: function toggleStatus() {
+      this.signInButtonEl.classList.toggle("login-status-hidden");
+      this.signInButtonEl.classList.toggle("nav-login-status-signin");
+      this.dropDownContainer.classList.toggle("login-status-hidden");
     }
   }, {
     key: "getProfile",
@@ -73,8 +87,8 @@ var NavLoginStatus = function () {
   }, {
     key: "logout",
     value: function logout() {
-      localStorage.clear();
-      this.toggleElements();
+      delete localStorage.id_token;
+      this.toggleStatus();
     }
   }, {
     key: "isValidDomain",

@@ -14,14 +14,20 @@ class NavLoginStatus {
     this.signInButtonEl.href = "/signin";
     this.signInButtonEl.className = "nav-login-status-signin";
 
+    this.dropDownContainer = document.createElement("div");
+    this.userEmailEl = document.createElement("span");
     this.dropDownEl = document.createElement("ul");
-    this.userEmailEl = document.createElement("li");
     let logoutEl = document.createElement("li");
 
-    this.element.appendChild(this.dropDownEl);
-    this.dropDownEl.appendChild(this.userEmailEl);
+    this.element.appendChild(this.dropDownContainer);
+    this.dropDownContainer.appendChild(this.userEmailEl);
+    this.dropDownContainer.appendChild(this.dropDownEl);
     this.dropDownEl.appendChild(logoutEl);
-    this.dropDownEl.className = "nav-login-status-dropdown hidden";
+
+    this.dropDownEl.className = "nav-login-status-dropdown login-status-hidden";
+    this.dropDownContainer.className = "nav-login-status-logged-in login-status-hidden";
+    this.userEmailEl.className = "nav-login-status-username";
+    this.userEmailEl.addEventListener("click", () => this.toggleDropdown());
 
     logoutEl.innerHTML = "Logout";
     logoutEl.className = "nav-login-status-logout";
@@ -31,15 +37,20 @@ class NavLoginStatus {
       this.getProfile((err, xhr) => {
         if (xhr.status === 200) {
           this.userEmailEl.innerHTML = JSON.parse(xhr.response).email;
-          this.toggleElements();
+          this.toggleStatus();
         }
       });
     }
   }
 
-  toggleElements() {
-    this.signInButtonEl.classList.toggle("hidden");
-    this.dropDownEl.classList.toggle("hidden");
+  toggleDropdown() {
+    this.dropDownEl.classList.toggle("login-status-hidden");
+  }
+
+  toggleStatus() {
+    this.signInButtonEl.classList.toggle("login-status-hidden");
+    this.signInButtonEl.classList.toggle("nav-login-status-signin");
+    this.dropDownContainer.classList.toggle("login-status-hidden");
   }
 
   getProfile(done) {
@@ -52,8 +63,8 @@ class NavLoginStatus {
   }
 
   logout() {
-    localStorage.clear();
-    this.toggleElements();
+    delete localStorage.id_token;
+    this.toggleStatus();
   }
 
   isValidDomain(domain) {
