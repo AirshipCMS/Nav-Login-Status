@@ -1,4 +1,4 @@
-class NavLoginStatus {
+window.NavLoginStatus = class NavLoginStatus {
   constructor(domain) {
     this.id_token = localStorage.getItem("id_token");
     this.element = document.getElementById("nav-login-status");

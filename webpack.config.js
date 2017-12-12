@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/app.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'navLoginStatus.bundle.js'
+    filename: 'navLoginStatus.min.js'
   },
   module: {
     rules: [
@@ -16,7 +16,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'es2016']
+            presets: ['env']
           }
         }
       }
