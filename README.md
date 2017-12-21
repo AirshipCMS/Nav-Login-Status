@@ -32,21 +32,21 @@ new NavLoginStatus('domain.airshipcms.io');
 install dependencies
 
 ```
-yarn install
+yarn
 ```
 
 start dev server
 
 ```
-gulp
+yarn dev
 ```
 
 this serves `src/` on `localhost:8080`
 
-## Build
+## Build for Dist
 
 ```
-gulp build
+yarn build
 ```
 
-necessary files will build into `dist/`
+javascript and css will be compiled into `dist/`

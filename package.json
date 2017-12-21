@@ -1,6 +1,27 @@
 {
-  "dependencies": {
-    "babel-cli": "^6.26.0",
+  "name": "nav-login-status",
+  "description": "Lightweight status module to display if a user's name, or a login link",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AirshipCMS/Nav-Login-Status.git"
+  },
+  "keywords": [
+    "airship"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AirshipCMS/Nav-Login-Status/issues"
+  },
+  "homepage": "https://github.com/AirshipCMS/Nav-Login-Status#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2017": "^6.24.1",
     "gulp": "^3.9.1",
