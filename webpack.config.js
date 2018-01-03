@@ -24,7 +24,7 @@ module.exports = [
       ]
     },
     plugins: [
-      // new MinifyPlugin()
+      new MinifyPlugin()
     ],
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
