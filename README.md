@@ -2,9 +2,12 @@
 
 ## Usage
 
-include `airship-nav-login-status.min.js` in your airship project:
+include `airship-nav-login-status.min.js` and `airship-nav-login-status.min.css` in your airship project:
 
 ```
+<head>
+  <link rel="stylesheet" type="text/css" href="/assets/styles/airship-nav-login-status.min.css">
+</head>
 <body>
 	<script src="/assets/scripts/airship-nav-login-status.min.js"></script>
 </body>
