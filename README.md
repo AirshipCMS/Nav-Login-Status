@@ -2,26 +2,18 @@
 
 ## Usage
 
-include `navLoginStatus.bundle.js` in your airship project:
+include `airship-nav-login-status.min.js` in your airship project:
 
 ```
 <body>
-	<script src="/assets/scripts/navLoginStatus.bundle.js"></script>
+	<script src="/assets/scripts/airship-nav-login-status.min.js"></script>
 </body>
 ```
 
 add the element container:
 
 ```
-<div id="nav-login-status"></div>
-```
-
-note that the element's `id` should be `nav-login-status`.
-
-create an instance of NavLoginStatus with the airshipcms domain:
-
-```
-new NavLoginStatus('domain.airshipcms.io');
+<div class="airship-nav-login-status"></div>
 ```
 
 ## Development
@@ -35,7 +27,7 @@ yarn install
 start dev server
 
 ```
-yarn run dev
+yarn start
 ```
 
 this serves `src/` on `localhost:9000`
