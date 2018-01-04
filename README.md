@@ -1,6 +1,7 @@
 # Nav-Login-Status
 
 ## Usage
+The precompiled files are located in the `dist/` directory of this repo.
 
 include `airship-nav-login-status.min.js` and `airship-nav-login-status.min.css` in your airship project:
 
