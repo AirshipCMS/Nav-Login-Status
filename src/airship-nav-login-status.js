@@ -7,6 +7,14 @@ let dropDownEl = document.createElement("ul");
 let logoutEl = document.createElement("li");
 
 if(elements) {
+  if (id_token !== null && window.location.pathname !== '/signin') {
+    getProfile((err, xhr) => {
+      if (xhr.status === 200) {
+        userEmailEl.innerHTML = JSON.parse(xhr.response).email;
+        window.airshipToggleStatus();
+      }
+    });
+  }
   Array.prototype.slice.call(elements).forEach((el) => render(el));
 }
 function render(element) {
@@ -25,21 +33,16 @@ function render(element) {
   logoutEl.innerHTML = "Logout";
   logoutEl.className = "airship-nav-login-status-logout";
   logoutEl.addEventListener("click", () => logout());
-  if (id_token !== null) {
-    getProfile((err, xhr) => {
-      if (xhr.status === 200) {
-        userEmailEl.innerHTML = JSON.parse(xhr.response).email;
-        toggleStatus();
-      }
-    });
-  }
 }
 
 function toggleDropdown() {
   dropDownEl.classList.toggle("airship-login-status-hidden");
 }
 
-function toggleStatus() {
+window.airshipToggleStatus = function toggleStatus(email) {
+  if(email) {
+    userEmailEl.innerHTML = email;
+  }
   signInButtonEl.classList.toggle("airship-login-status-hidden");
   signInButtonEl.classList.toggle("airship-nav-login-status-signin");
   dropDownContainer.classList.toggle("airship-login-status-hidden");
@@ -58,5 +61,5 @@ function logout() {
   delete localStorage.id_token;
   delete localStorage.account;
   delete localStorage.profile;
-  toggleStatus();
+  window.airshipToggleStatus();
 }
