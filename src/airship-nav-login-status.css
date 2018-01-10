@@ -28,11 +28,13 @@
 /* HIDE LOGIN STATUS ITEMS */
 .airship-login-status-hidden{
   display: none;
+  z-index: 100;
 }
 
 .airship-nav-login-status-dropdown.airship-login-status-hidden,
 .airship-nav-login-status-logged-in.airship-login-status-hidden{
   display: none;
+  z-index: 100;
 }
 
 @media only screen and (min-width: 1024px){
