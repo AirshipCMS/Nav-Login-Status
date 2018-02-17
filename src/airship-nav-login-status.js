@@ -10,7 +10,7 @@ if(elements) {
   if (id_token !== null && window.location.pathname !== '/signin') {
     getProfile((err, xhr) => {
       if (xhr.status === 200) {
-        userEmailEl.innerHTML = JSON.parse(xhr.response).email;
+        userEmailEl.innerHTML = JSON.parse(xhr.response).auth0_user.email;
         window.airshipToggleStatus();
       }
     });
