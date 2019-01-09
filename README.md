@@ -50,3 +50,7 @@ yarn build
 ```
 
 javascript and css will be compiled into `dist/`
+
+## Notes
+
+The script is built to point to `/signin` for the signup page. If the signin page is different for your site, you will need to modify this link.
