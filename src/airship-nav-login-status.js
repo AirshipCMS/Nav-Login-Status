@@ -10,9 +10,11 @@ if(elements) {
   if (id_token !== null && window.location.pathname !== '/signin') {
     getProfile((err, xhr) => {
       if (xhr.status === 200) {
-        console.log(xhr.response)
         userEmailEl.innerHTML = JSON.parse(xhr.response).auth0_user.email;
         window.airshipToggleStatus();
+      } else if(xhr.status === '401' || xhr.status === 403) {
+        var email = JSON.parse(localStorage.getItem('profile')).email;
+        window.airshipToggleStatus(email);
       }
     });
   }
@@ -38,6 +40,7 @@ function render(element) {
 
 function toggleDropdown() {
   dropDownEl.classList.toggle("airship-login-status-hidden");
+  window.location.href = '/signin';
 }
 
 window.airshipToggleStatus = function toggleStatus(email) {
@@ -63,4 +66,5 @@ function logout() {
   delete localStorage.account;
   delete localStorage.profile;
   window.airshipToggleStatus();
+  window.location.reload();
 }
