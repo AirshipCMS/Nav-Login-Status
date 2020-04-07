@@ -52,7 +52,11 @@ class NavLoginStatus {
   }
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem('user')
+    localStorage.removeItem('profile')
+    localStorage.removeItem('account')
+    localStorage.removeItem('id_token')
+    localStorage.removeItem('access_token')
     this.toggleElements();
   }
 
